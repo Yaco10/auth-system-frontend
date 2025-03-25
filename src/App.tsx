@@ -1,11 +1,15 @@
-import { Register } from './components/register'
-import './App.css'
+import { BrowserRouter as Router } from "react-router-dom";
+import { AuthProvider } from "./context/AuthProvider";
+import AppRoutes from "./Routes/Routes";
 
-function App() {
-
+const App = () => {
   return (
-    <Register/>
-  )
-}
+    <AuthProvider>
+      <Router>
+        <AppRoutes />
+      </Router>
+    </AuthProvider>
+  );
+};
 
-export default App
+export default App;
