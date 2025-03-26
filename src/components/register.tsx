@@ -1,26 +1,31 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
     
 export function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
     const data = {
         name: username,
         mail: email,
         password: password
     }
 
-    const passDatos = (event: React.FormEvent) => {
+    const passDatos = async (event: React.FormEvent) => {
         event.preventDefault()
-        axios.post('/users/register', data)
-            .then(response => {
+        try{
+            const response = await axios.post('/users/register', data)
+            if (response.status === 200) {
                 console.log('Datos enviados correctamente:', response.data);
-            })
-            .catch(error => {
-                console.error('Hubo un error al enviar los datos:', error);
-            });
+                navigate("/menu"); 
+            }
+        } catch(error){
+            console.error('Hubo un error al enviar los datos:', error);
+        }
+        
+            
     }
 
     return (

@@ -3,12 +3,14 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Login } from "../components/Login";
 import { Menu } from "../components/Menu";
+import { Register } from "../components/Register";
 
 const AppRoutes = () => {
   const authContext = useContext(AuthContext);
 
   return (
     <Routes>
+      <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route
         path="/menu"

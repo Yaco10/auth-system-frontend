@@ -35,7 +35,7 @@ export function Login() {
             <form action="" onSubmit={passDatos} className="flex flex-col">
                 <input type="text" placeholder="email" className="m-3 border-1 rounded-md" onChange={(e) => setEmail(e.target.value)}/>
                 <input type="password" placeholder="password" className="m-3 border-1 rounded-md" onChange={(e) => setPassword(e.target.value)}/>
-                <button type="submit">Register</button>
+                <button type="submit">Login</button>
             </form>
         </div>
     )
