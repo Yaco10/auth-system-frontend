@@ -20,6 +20,7 @@ export function Login() {
             const response = await axios.post('/users/login', data);
             if (response.status === 200) {
                 console.log('Datos enviados correctamente:', response.data);
+                localStorage.setItem("authToken", response.data.token);
                 setIsAuth(true);
                 navigate("/menu"); 
             }
