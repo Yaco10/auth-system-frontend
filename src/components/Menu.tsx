@@ -7,27 +7,28 @@ export function Menu(){
     const { isAuth } = useAuth();
     const token = localStorage.getItem("authToken");
     
-    useEffect(() => {
-      try {
-        const response = await axios.get(
-          "/users/perfil", // URL de la API
-          {}, // Cuerpo vacío (porque es un POST sin body)
-          {
-            headers: {
-              Authorization: `Bearer ${token}` // Token en el header
+    const MyComponent = ({ token }) => {
+      useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get("/users/perfil", {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+    
+            if (response.status === 200) {
+              console.log("Datos recibidos correctamente:", response.data);
             }
+          } catch (error) {
+            console.error("Hubo un error al obtener los datos:", error);
           }
-        );
-        if (response.status === 200) {
-            console.log('Datos enviados correctamente:', response.data);
-           
-           
+        };
+    
+        if (token) {
+          fetchData();
         }
-    } catch (error) {
-        console.error('Hubo un error al enviar los datos:', error);
-    }
-  
-    }, [token]);
+      }, [token]);
     
   if (!isAuth) {
     return <Navigate to="/login" />;
